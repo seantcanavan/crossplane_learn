@@ -1,4 +1,4 @@
-apiVersion: pkg.crossplane.io/v1
+apiVersion: lambda.aws.upbound.io/v1beta1
 kind: Provider
 metadata:
   name: provider-aws-lambda
