@@ -1,0 +1,20 @@
+apiVersion: lambda.aws.upbound.io/v1beta1
+kind: Function
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lambda/v1beta1/alias
+  labels:
+    testing.upbound.io/example-name: test_lambda_alias
+  name: test-lambda-alias
+spec:
+  forProvider:
+    description: "Sean's go lambda crossplane test function"
+    packageType: "Zip"
+    handler: bootstrap
+    publish: true
+    region: us-east-2
+    architectures: ["arm64"]
+    memorySize: 256
+    timeout: 30
+    roleSelector:
+    runtime: provided.al2

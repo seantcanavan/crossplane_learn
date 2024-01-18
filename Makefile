@@ -45,9 +45,8 @@ cp_secret:
 	@echo "nicely done! now run 'make infra' next."
 
 cp_infra:
-	-#kubectl create -f cp/s3_bucket.yaml
-	kubectl apply -f cp/xrd.yaml
-	kubectl apply -f cp/template.yaml
+	kubectl apply -f cp/nosql_xrd.yaml
+	kubectl apply -f cp/nosql_template.yaml
 
 cp_resources:
 	kubectl apply -f cp/resource.yaml
