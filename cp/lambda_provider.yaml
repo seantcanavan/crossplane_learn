@@ -1,0 +1,6 @@
+apiVersion: lambda.aws.upbound.io/v1beta1
+kind: Provider
+metadata:
+  name: provider-aws-lambda
+spec:
+  package: xpkg.upbound.io/upbound/provider-aws-lambda:v0.47.1

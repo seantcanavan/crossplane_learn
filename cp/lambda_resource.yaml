@@ -1,0 +1,6 @@
+apiVersion: lambda.aws.upbound.io/v1beta1
+kind: Function
+metadata:
+  name: nosqls.database.example.com
+spec:
+  location: "US"
