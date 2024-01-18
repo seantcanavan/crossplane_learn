@@ -1,20 +1,53 @@
-apiVersion: lambda.aws.upbound.io/v1beta1
-kind: Function
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
 metadata:
-  annotations:
-    meta.upbound.io/example-id: lambda/v1beta1/alias
-  labels:
-    testing.upbound.io/example-name: test_lambda_alias
-  name: test-lambda-alias
+  name: proxy-with-go
 spec:
-  forProvider:
-    description: "Sean's go lambda crossplane test function"
-    packageType: "Zip"
-    handler: bootstrap
-    publish: true
-    region: us-east-2
-    architectures: ["arm64"]
-    memorySize: 256
-    timeout: 30
-    roleSelector:
-    runtime: provided.al2
+  resources:
+    - name: lambdaFunction
+      base:
+        apiVersion: pkg.crossplane.io/v1
+        kind: Function
+        metadata:
+          name: lambda_template_test_name
+        spec:
+          forProvider:
+            region: us-east-2
+          providerConfigRef:
+            name: default
+#      patches:
+#        - type: FromCompositeFieldPath
+#          fromFieldPath: "spec.location"
+#          toFieldPath: "spec.forProvider.region"
+#          transforms:
+#            - type: map
+#              map:
+#                EU: "eu-north-1"
+#                US: "us-east-2"
+#    - name: dynamoDB
+#      base:
+#        apiVersion: dynamodb.aws.upbound.io/v1beta1
+#        kind: Table
+#        metadata:
+#          name: crossplane-quickstart-database
+#        spec:
+#          forProvider:
+#            region: "us-east-2"
+#            writeCapacity: 1
+#            readCapacity: 1
+#            attribute:
+#              - name: S3ID
+#                type: S
+#            hashKey: S3ID
+#      patches:
+#        - type: FromCompositeFieldPath
+#          fromFieldPath: "spec.location"
+#          toFieldPath: "spec.forProvider.region"
+#          transforms:
+#            - type: map
+#              map:
+#                EU: "eu-north-1"
+#                US: "us-east-2"
+  compositeTypeRef:
+    apiVersion: pkg.crossplane.io/v1
+    kind: Function

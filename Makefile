@@ -50,3 +50,9 @@ cp_infra:
 
 cp_resources:
 	kubectl apply -f cp/resource.yaml
+
+cp_lambda:
+	kubectl apply -f cp/lambda_provider.yaml
+	#kubectl create -f cp/lambda_template.yaml
+	#kubectl apply -f cp/lambda_xrd.yaml
+	kubectl create -f cp/lambda_resource.yaml
